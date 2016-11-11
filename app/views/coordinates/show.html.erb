@@ -1,0 +1,23 @@
+<h1>Coordinates</h1>
+<table>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+  </tr>
+  <% @coordinates.each do |coordinate| %>
+      <tr>
+        <td><%= coordinate.first_name %></td>
+        <td><%= coordinate.last_name%></td>
+        <td><%= coordinate.email %></td>
+      </tr>
+  <% end %>
+</table>
+<a href="/coordinates/show">Processing Data</a>
+<h2>Import Coordinates</h2>
+
+<%= form_tag import_coordinates_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
+
+<% end %>

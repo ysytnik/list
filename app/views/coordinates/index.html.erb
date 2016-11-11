@@ -1,0 +1,32 @@
+<h1>Coordinates valid</h1>
+<table>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+  </tr>
+  <% @coordinates.where("length(first_name) > 3").each do |coordinate| %>
+      <tr>
+        <td><%= coordinate.first_name.to_s.capitalize.gsub( /[^A-Za-zéô]+/, '' ) %></td>
+        <td><%= coordinate.last_name.to_s.capitalize.gsub( /[^A-Za-zéô]+/, '' )%></td>
+        <td><%= coordinate.email.to_s.gsub( /[^A-Za-z.@]+/, '' ) %></td>
+      </tr>
+  <% end %>
+</table>
+<h1>Coordinates invalid</h1>
+<table>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+  </tr>
+  <% @coordinates.where("length(first_name) < 3").each do |coordinate| %>
+      <tr>
+        <td><%= coordinate.first_name %></td>
+        <td><%= coordinate.last_name%></td>
+        <td><%= coordinate.email%></td>
+        <p> Less than 3 symbols <p>
+      </tr>
+  <% end %>
+</table>
+<%= link_to "Back", coordinates_path %>
