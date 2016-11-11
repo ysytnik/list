@@ -1,10 +1,5 @@
 class Coordinate < ApplicationRecord
-  validates :first_name,  uniqueness: { case_sensitive: false }
-  VALID_EMAIL_REGEX = /@/
-  validates :email, presence: true,
-            format: { with: VALID_EMAIL_REGEX },
-            uniqueness: { case_sensitive: false }
-  validates :last_name,  uniqueness: { case_sensitive: false }
+
 
   has_and_belongs_to_many :valid_coordinate
 #after_save :import_valid_coordinates
