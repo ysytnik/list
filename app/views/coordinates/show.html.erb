@@ -20,9 +20,9 @@
     <th>Last Name</th>
     <th>Email</th>
   </tr>
-  <% @coordinates.uniq.pluck(:first_name).where("length(first_name) < 3") each do |coordinate| %>
+  <% @coordinates.where("length(first_name) < 3").each do |coordinate| %>
       <tr>
-        <td><%= coordinate.first_name %></td>
+        <td><%= coordinate.first_name%></td>
         <td><%= coordinate.last_name%></td>
         <td><%= coordinate.email%></td>
         <p> Less than 3 symbols <p>
