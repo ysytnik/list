@@ -2,6 +2,8 @@ class Coordinate < ApplicationRecord
 
 
   has_and_belongs_to_many :valid_coordinate
+
+
 #after_save :import_valid_coordinates
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
@@ -26,6 +28,9 @@ class Coordinate < ApplicationRecord
     end
   end
 
+  def new
+    @coordinate = Coordinate.new
+  end
 
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
@@ -35,12 +40,9 @@ class Coordinate < ApplicationRecord
       else raise "Unknown file type: #{file.original_filename}"
     end
   end
-
+end
   #def import_valid_coordinates
   #columns = (Coordinate.column_names & ValidCoordinate.column_names) - ["id"]
   #ValidCoordinate.create(Coordinate.all.map(&:attributes) )
 
   #end
-
-end
-
